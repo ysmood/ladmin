@@ -1,6 +1,6 @@
 ### Overview
 
-A general node server template.
+A general high performance node server template. It's written in pure coffeescript.
 
 This project is more like a general configuration than a framework.
 It will give you some useful tools to quick setup a commmon node server project.

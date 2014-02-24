@@ -1,6 +1,13 @@
 ### Overview
 
-A general high performance node server template. It's written in pure coffeescript.
+A general high performance node server template. It's written in pure coffeescript and stylus.
+It is especially good at small and standalone project.
+
+When you using it you don't need to start a coffeescript or stylus file watcher to compile the
+source code. The server will automatically compile cache the changed coffeescript, stylus and ejs files.
+It has a standalone database inside, so you don't need any database configuration.
+
+Though it contains lots of staffs, you still have the option to choose whether to load them or not.
 
 This project is more like a general configuration than a framework.
 It will give you some useful tools to quick setup a commmon node server project.

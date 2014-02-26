@@ -2,9 +2,10 @@ NB.conf = {
 
 	port: 8013
 
-	# IF 'auto_reload_page' is enabled, enable_socket_io will be auto enabled.
+	# IF 'auto_reload_page' is enabled, it will be auto enabled.
 	enable_socket_io: false
 
+	# If 'mode' is 'product', it will be disabled.
 	auto_reload_page: true
 
 	modules: {
@@ -32,6 +33,9 @@ NB.conf.client_conf = {
 	mode: NB.conf.mode
 
 }
+
+if NB.conf.mode == 'product'
+	NB.conf.auto_reload_page = false
 
 if NB.conf.auto_reload_page
 	NB.conf.enable_socket_io = true

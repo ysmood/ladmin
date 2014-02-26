@@ -4,6 +4,9 @@ class NB.Nobone
 		@init_langs()
 		@init_global_tooltip()
 
+		if NB.conf.auto_reload_page
+			@init_auto_reload_page()
+
 	init_underscore: ->
 		_.mixin _.str.exports()
 		_.str.include 'Underscore.string', 'string'
@@ -26,3 +29,14 @@ class NB.Nobone
 			)
 			$this.tooltip('show').removeAttr('title')
 		)
+
+	init_auto_reload_page: ->
+		init = ->
+			sock = io.connect(location.origin + '/auto_reload_page')
+			sock.on 'code_reload', (path) ->
+				location.reload()
+
+		if not NB.conf.enable_socket_io
+			require ['/socket.io/socket.io.js'], init
+		else
+			init()

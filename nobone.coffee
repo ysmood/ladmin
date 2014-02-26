@@ -21,6 +21,9 @@ class NB.Nobone extends NB.Module
 
 		@init_global_router()
 
+		if NB.conf.auto_reload_page
+			@init_auto_reload_page()
+
 	init_config: ->
 		# Set the body parser.
 		NB.app.use(NB.express.json())
@@ -73,6 +76,14 @@ class NB.Nobone extends NB.Module
 			_.valid_class(Plugin)
 			plugin = new Plugin
 			NB.plugins[name.toLowerCase()] = plugin
+
+	init_auto_reload_page: ->
+		# Auto reload page when file changed.
+
+		io = NB.io.of('/auto_reload_page').on 'connection', ->
+
+		NB.nobone.emitter.on 'code_reload', (path) ->
+			io.emit 'code_reload', path
 
 	show_404: (req, res, next) =>
 		if _.find_route(NB.app.routes, req.path)

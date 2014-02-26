@@ -17,10 +17,7 @@
 	// App name space.
 	NB = {
 		langs: {},
-		conf: {
-			mode: '<?= NB.conf.mode ?>',
-			current_lang: '<?= NB.conf.current_lang ?>'
-		}
+		conf: <?= JSON.stringify(NB.conf.client_conf) ?>
 	};
 
 </script>

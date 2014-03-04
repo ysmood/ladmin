@@ -53,7 +53,10 @@ _.mixin(
 		$msg_box.keypress (e) ->
 			if e.keyCode == 13
 				btn = _.find opts.btn_list, (el) -> el.is_default
-				btn?.clicked?()
+				if btn
+					btn.clicked?()
+				else
+					_.last(opts.btn_list).clicked?()
 
 		$msg_box.on('shown.bs.modal', opts.shown) if opts.shown
 		$msg_box.on('hide.bs.modal', opts.closed) if opts.closed

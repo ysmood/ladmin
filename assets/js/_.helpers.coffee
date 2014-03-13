@@ -58,7 +58,9 @@ _.mixin(
 				else
 					_.last(opts.btn_list).clicked?()
 
-		$msg_box.on('shown.bs.modal', opts.shown) if opts.shown
+		$msg_box.on 'shown.bs.modal', ->
+			$msg_box.find('input:first').focus()
+			opts.shown?()
 		$msg_box.on('hide.bs.modal', opts.closed) if opts.closed
 
 		$msg_box.on('hidden.bs.modal', ->

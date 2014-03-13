@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 
-<?=
+<?-
 	_.css(
 		// Third libs
 		'/bootstrap/dist/css/bootstrap.min.css',
@@ -17,7 +17,7 @@
 	// App name space.
 	NB = {
 		langs: {},
-		conf: <?= JSON.stringify(NB.conf.client_conf) ?>
+		conf: <?- JSON.stringify(NB.conf.client_conf) ?>
 	};
 
 </script>

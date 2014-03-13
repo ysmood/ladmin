@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?= head ?>
+	<?- head ?>
 
-	<?= _.css(css) ?>
+	<?- _.css(css) ?>
 
-	<title><?- _.l(title.toUpperCase()) ?></title>
+	<title><?= _.l(title.toUpperCase()) ?></title>
 </head>
 <body>
 
@@ -14,12 +14,12 @@
 	</h1>
 
 	<h1 class="text-center font-l" title="Chris Avellone">
-		<?= _.l('Time is not your enemy, forever is.') ?>
+		<?- _.l('Time is not your enemy, forever is.') ?>
 	</h1>
 
-	<?= foot ?>
+	<?- foot ?>
 
-	<?= _.js(js) ?>
+	<?- _.js(js) ?>
 
 </body>
 </html>

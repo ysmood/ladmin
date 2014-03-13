@@ -68,25 +68,34 @@ _.mixin(
 		$msg_box.modal('show')
 
 	notify: (options = {}) ->
+		###
+			See the defaults.
+			It will return the jQuery of the message
+			and the jQuery object has a method called `destroy`
+			use it to destroy the message manully.
+		###
 		defaults =
 			info: _.l('your information')
-			class: ''
+			auto_destroy: true
 			delay: 700
+			class: ''
 
 		opts = _.defaults(options, defaults)
 		$noti = $('<div class="noti">')
-			.text(opts.info)
+			.html(opts.info)
 			.addClass(opts.class)
 		$('#NB-notifications').append $noti
 
-		requirejs(['/jquery.transit/jquery.transit.js'], ->
-			$noti.transit_fade_in(->
-				$noti.delay(opts.delay)
-					.transit { right: $noti.outerWidth() / 2, opacity: 0 }, ->
-						$noti.slideUp ->
-							$noti.remove()
-			, opts.delay)
-		)
+		$noti.destroy = ->
+			requirejs ['/jquery.transit/jquery.transit.js'], ->
+				$noti.delay(opts.delay).transit { right: $noti.outerWidth() / 2, opacity: 0 }, ->
+					$noti.slideUp ->
+						$noti.remove()
+
+		requirejs ['/jquery.transit/jquery.transit.js'], ->
+			$noti.transit_fade_in ->
+				if opts.auto_destroy
+					$noti.destroy()
 		return $noti
 
 	pt_sum: (point_a, point_b, direction = 1) ->

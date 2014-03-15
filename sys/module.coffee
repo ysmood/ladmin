@@ -85,9 +85,10 @@ class NB.Module
 		require '../var/config'
 
 	_load_langs: ->
-		NB.langs ?= {}
-		for lang in NB.conf.load_langs
-			require '../assets/langs/' + lang
+		if not NB.langs
+			NB.langs = {}
+			for lang in NB.conf.load_langs
+				require '../assets/langs/' + lang
 
 	_load_global_libs: ->
 		# Load underscore.

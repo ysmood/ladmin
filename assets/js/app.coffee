@@ -1,7 +1,6 @@
 class NB.Nobone
 	constructor: ->
 		@init_underscore()
-		@init_langs()
 		@init_global_tooltip()
 
 		if NB.conf.auto_reload_page
@@ -16,8 +15,6 @@ class NB.Nobone
 			interpolate : /<\?=([\s\S]+?)\?>/g
 			escape      : /<\?-([\s\S]+?)\?>/g
 		}
-
-	init_langs: ->
 
 	init_global_tooltip: ->
 		$('body').on('mouseenter', '[title]', ->

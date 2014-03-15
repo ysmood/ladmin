@@ -12,20 +12,12 @@
 			'/bootstrap/dist/js/bootstrap.min.js',
 
 			// NB
+			'/langs/' + MTMS.conf.current_lang + '.js',
 			'/js/jquery.helpers.js',
 			'/js/_.helpers.js',
 			'/js/app.js'
 		)
 	?>
-
-	<!-- Load languages. -->
-	<?- _.js(
-		NB.conf.load_langs.map(
-			function(el) {
-				return '/langs/' + el + '.js';
-			}
-		)
-	) ?>
 
 </div>
 

@@ -100,6 +100,43 @@ _.mixin(
 					$noti.destroy()
 		return $noti
 
+	assist_info: (options) ->
+		###
+			Return true if don't need to assist again.
+		###
+		defaults = {
+			info: ''
+			done: ->
+		}
+		opts = _.defaults(options, defaults)
+
+		hash = _.hash_str(opts.info)
+		saved_data = localStorage.getItem('dont_show_again') or ''
+		if saved_data.indexOf(hash) > -1
+			opts.done()
+			return
+
+		tpl = $('#NB-tpl-assist-info').html()
+
+		$msg_box = _.msg_box {
+			title: 'Assistant'
+			body: _.template tpl, { info: _.l opts.info }
+			closed: ->
+				if $msg_box.find('input').is ':checked'
+					saved_data += hash + ','
+					localStorage.setItem 'dont_show_again', saved_data
+		}
+		$msg_box.on 'hidden.bs.modal', opts.done
+
+	hash_str: (str) ->
+		hash = 0
+		return hash if not str
+		for c, i in str
+			code = str.charCodeAt i
+			hash = ( (hash << 5) - hash ) + code
+			hash |= 0
+		return hash
+
 	pt_sum: (point_a, point_b, direction = 1) ->
 		###
 			Return the sum of two points.

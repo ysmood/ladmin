@@ -36,16 +36,17 @@ class NB.Renderer
 			The data arg must be an object.
 		###
 
-		data = _.clone(data)
-
-		# Set global variables.
-		_.safe_extend(data, @locals)
-
 		code = _.get_cached_code(path)
 
 		if raw
 			return code
 		else
+			data = _.defaults(data)
+			data.filename = path
+
+			# Set global variables.
+			_.safe_extend(data, @locals)
+
 			try
 				rendered = @ejs.render(code, data)
 				return rendered.toString()

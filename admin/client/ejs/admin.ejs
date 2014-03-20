@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?- head ?>
+
+	<?- _.css(css) ?>
+
+	<title><?= _.l(title.toUpperCase()) ?></title>
+</head>
+<body>
+
+	<div id="main">
+
+		<h1 class="text-center font-l">
+			Add New User
+		</h1>
+
+		<br>
+
+		<div id="add_user">
+			<div class="input-group">
+				<span class="input-group-addon">
+					User Name
+				</span>
+				<input id='username' type="text" class="form-control" placeholder='English only, no space, lower case'>
+			</div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon">
+					Password
+				</span>
+				<input id='password' type="text" class="form-control">
+			</div>
+			<br>
+			<div class="row">
+				<button id="submit" class="col-xs-offset-8 col-xs-3 btn btn-primary">Submit</button>
+			</div>
+		</div>
+
+		<br>
+
+	</div>
+
+	<?- foot ?>
+
+	<?- _.js(js) ?>
+
+</body>
+</html>

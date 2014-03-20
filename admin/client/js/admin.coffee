@@ -38,8 +38,17 @@ $('#submit').click ->
 					class: 'green'
 				}
 				_.msg_box {
-					title: 'Use the following command to login the linux'
-					body: "<pre>ssh <b style='color: #0080ff'>#{username}</b>@i.ysmood.org</pre>"
+					title: 'How to login'
+					body: """
+						<p>
+							Use the web terminal:
+							<a href="http://i.ysmood.org:8080">click to open</a>
+						</p>
+						<p>
+							Or use the following command to login the linux
+							<pre>ssh <b style='color: #0080ff'>#{username}</b>@i.ysmood.org</pre>
+						</p>
+					"""
 				}
 			else
 				_.notify {

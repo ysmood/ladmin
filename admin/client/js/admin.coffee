@@ -9,7 +9,8 @@ require ['/jquery.transit/jquery.transit.js'], ->
 
 $(window).keyup (e) ->
 	if e.keyCode == 13
-		$('#submit').click()
+		if not $('#submit').is ':focus'
+			$('#submit').click()
 
 $('#submit').click ->
 	username = $('#username').val()
@@ -30,7 +31,7 @@ $('#submit').click ->
 		password: password
 	}).done (data) ->
 		switch data
-			when 'OK'
+			when 'ok'
 				_.notify {
 					info: 'user added'
 					delay: 2000

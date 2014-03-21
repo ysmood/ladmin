@@ -37,12 +37,13 @@ $('#submit').click ->
 					delay: 2000
 					class: 'green'
 				}
+				host = location.host.replace /(:\d*)$/, ''
 				_.msg_box {
 					title: 'How to login'
 					body: """
 						<p>
 							Use the following command to login the linux
-							<pre>ssh <b style='color: #0080ff'>#{username}</b>@#{location.host}</pre>
+							<pre>ssh <b style='color: #0080ff'>#{username}</b>@#{host}</pre>
 						</p>
 					"""
 				}

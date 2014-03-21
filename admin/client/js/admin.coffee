@@ -9,7 +9,7 @@ require ['/jquery.transit/jquery.transit.js'], ->
 
 $(window).keyup (e) ->
 	if e.keyCode == 13
-		if not $('#submit').is ':focus'
+		if not $('input').is ':focus'
 			$('#submit').click()
 
 $('#submit').click ->

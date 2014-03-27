@@ -15,6 +15,9 @@ case $1 in
 			echo '>> Auto created an example config file.'
 			cp $config_example var/config.coffee
 		fi
+
+		groupadd guest
+		mkdir /home/guest
 		;;
 
 	'test' )

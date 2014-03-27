@@ -30,6 +30,15 @@ _.mixin
 		else
 			return _.extend.apply(_, objs)
 
+	hash_str: (str) ->
+		hash = 0
+		return hash if not str
+		for c, i in str
+			code = str.charCodeAt i
+			hash = ( (hash << 5) - hash ) + code
+			hash |= 0
+		return hash
+
 	node_version: ->
 		###
 			Return a int represent the version of node.

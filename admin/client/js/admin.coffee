@@ -9,10 +9,10 @@ require ['/jquery.transit/jquery.transit.js'], ->
 
 $(window).keyup (e) ->
 	if e.keyCode == 13
-		if not $('#submit').is ':focus'
-			$('#submit').click()
+		if not $('#adduser').is ':focus'
+			$('#adduser').click()
 
-$('#submit').click ->
+get_user_info = ->
 	username = $('#username').val()
 	password = $('#password').val()
 
@@ -24,12 +24,20 @@ $('#submit').click ->
 			class: 'red'
 			delay: 2000
 		}
+		return null
+
+	return {
+		username
+		password
+	}
+
+$('#adduser').click ->
+	user_info = get_user_info()
+
+	if not user_info
 		return
 
-	$.post('/adduser', {
-		username: username
-		password: password
-	}).done (data) ->
+	$.post('/adduser', user_info).done (data) ->
 		switch data
 			when 'ok'
 				_.notify {
@@ -43,9 +51,30 @@ $('#submit').click ->
 					body: """
 						<p>
 							Use the following command to login the linux
-							<pre>ssh <b style='color: #0080ff'>#{username}</b>@#{host}</pre>
+							<pre>ssh <b style='color: #0080ff'>#{user_info.username}</b>@#{host}</pre>
 						</p>
 					"""
+				}
+			else
+				_.notify {
+					info: data
+					delay: 2000
+					class: 'red'
+				}
+
+$('#deluser').click ->
+	user_info = get_user_info()
+
+	if not user_info
+		return
+
+	$.post('/deluser', user_info).done (data) ->
+		switch data
+			when 'ok'
+				_.notify {
+					info: 'user deleted'
+					delay: 2000
+					class: 'green'
 				}
 			else
 				_.notify {
